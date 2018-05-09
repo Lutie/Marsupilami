@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification{% endblock %}
+
+{% block body %}
+
+    <h1> Modification du Marsupilami </h1>
+
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-xs-6"> {{ form_row(form.name) }} </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3"> {{ form_row(form.birthdate) }} </div>
+        <div class="col-xs-3"> {{ form_row(form.food) }} </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3"> {{ form_row(form.family) }} </div>
+        <div class="col-xs-3"> {{ form_row(form.race) }} </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Valider</button>
+    <a href="{{ path('app_main_index') }}" class="btn btn-primary">Annuler</a>
+    {{ form_end(form) }}
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre liste d'amis{% endblock %}
+
+{% block body %}
+
+    <h1> Votre liste d'amis </h1>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+
+            <thead>
+            <td>Nom</td>
+            <td>Famille</td>
+            <td>Race</td>
+            <td>Nourriture</td>
+            <td></td>
+            </thead>
+
+            <tbody>
+            {% set ma_route = app.request.attributes.get('_route') %}
+            {% set mon_token = csrf_token('FRIEND_TOKEN') %}
+            {% for friend in app.user.friends %}
+                <tr>
+                    <td>{{ friend.name }}</td>
+                    <td>{{ friend.family }}</td>
+                    <td>{{ friend.race }}</td>
+                    <td>{{ friend.food }}</td>
+                    <td><a href="{{ path('app_main_delete', {id:friend.id, token:mon_token, location:ma_route}) }}"
+                           class="btn btn-danger btn-block">Supprimer un ami</a></td>
+                </tr>
+            {% else %}
+                <p>Pas d'ami trouvé !</p>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

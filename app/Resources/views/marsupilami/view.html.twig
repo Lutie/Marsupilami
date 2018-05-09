@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre Marsupilami{% endblock %}
+
+{% block body %}
+
+    <h1> Votre Marsupilami </h1>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+
+            <thead>
+            <td></td>
+            <td></td>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td class="col-xs-3">Nom</td>
+                <td class="col-xs-3">{{ app.user.name }}</td>
+            </tr>
+            <tr>
+                <td class="col-xs-3">Date de naissance</td>
+                <td class="col-xs-3">{{ app.user.birthdate|date("d/m/Y") }}</td>
+            </tr>
+            <tr>
+                <td class="col-xs-3">Âge</td>
+                <td class="col-xs-3">
+                    {% set age = ('now'|date('Y') - app.user.birthdate|date('Y') - 1) + ('now'|date('2010-m-d')|date('U') - app.user.birthdate|date('2010-m-d')|date('U') >= 0 ? 1 : 0) %}
+                    {% set age = age < 0 ? 0 : age %}
+                    {{ age }} an{% if age > 1 %}s{% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td class="col-xs-3">Famille</td>
+                <td class="col-xs-3">{{ app.user.family }}</td>
+            </tr>
+            <tr>
+                <td class="col-xs-3">Race</td>
+                <td class="col-xs-3">{{ app.user.race }}</td>
+            </tr>
+            <tr>
+                <td class="col-xs-3">Nourriture</td>
+                <td class="col-xs-3">{{ app.user.food }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

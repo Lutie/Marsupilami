@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1> Marsupilami </h1>
+    <p>Plateforme de gestion de Marsupilami !</p>
+    <p>Créez votre Marsupilami et devenez l'ami d'autres Marsupilami !</p>
+    </br>
+    </br>
+
+    {% if is_granted('ROLE_USER') == false %}
+        <p>Inscrivez vous vite et rejoignez nous !</p>
+    {% else %}
+        <p>Bonjour <b>{{ app.user.name }}</b> ! Nous sommes content de te revoir parmi nous :) !</p>
+    {% endif %}
+
+{% endblock %}

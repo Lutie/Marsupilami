@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre Marsupilami{% endblock %}
+
+{% block body %}
+
+    <h1> Tous les Marsupilamis </h1>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+
+            <thead>
+            <td>Nom</td>
+            <td>Famille</td>
+            <td>Race</td>
+            <td>Nourriture</td>
+            <td></td>
+            </thead>
+
+            <tbody>
+            {% set ma_route = app.request.attributes.get('_route') %}
+            {% set mon_token = csrf_token('FRIEND_TOKEN') %}
+            {% for marsupilami in marsupilamis %}
+                <tr>
+                    <td>{{ marsupilami.name }}</td>
+                    <td>{{ marsupilami.family }}</td>
+                    <td>{{ marsupilami.race }}</td>
+                    <td>{{ marsupilami.food }}</td>
+                    {% if marsupilami in app.user.friends %}
+                        <td>
+                            <a href="{{ path('app_main_delete', {id:marsupilami.id, token:mon_token, location:ma_route}) }}"
+                               class="btn btn-danger btn-block">Supprimer un ami</a></td>
+                    {% elseif marsupilami == app.user %}
+                        <td>
+                            <span class="btn btn-success btn-block">C'est toi !</span></td>
+                    {% else %}
+                        <td><a href="{{ path('app_main_add', {id:marsupilami.id, token:mon_token}) }}"
+                               class="btn btn-warning btn-block">Ajouter en ami</a></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

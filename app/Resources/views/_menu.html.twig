@@ -1,0 +1,39 @@
+{% set route = app.request.attributes.get('_route') %}
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li>
+                <a href="{{ path('app_main_index') }}">Marsupilami</a>
+            </li>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li class="{{ route starts with 'app_main_viewone' ? 'active' }}">
+                    <a href="{{ path('app_main_viewone') }}">Afficher mon Marsupilami</a>
+                </li>
+                <li class="{{ route starts with 'app_main_edit' ? 'active' }}">
+                    <a href="{{ path('app_main_edit') }}">Modifier mon Marsupilami</a>
+                </li>
+                <li class="{{ route starts with 'app_main_friend' ? 'active' }}">
+                    <a href="{{ path('app_main_friend') }}">Liste d'Ami(s)</a>
+                </li>
+                <li class="{{ route starts with 'app_main_viewall' ? 'active' }}">
+                    <a href="{{ path('app_main_viewall') }}">Liste de tous les Marsupilamis</a>
+                </li>
+            {% endif %}
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <a href="{{ path('app_security_logout') }}">Déconnexion</a>
+                {% else %}
+                    <a href="{{ path('app_security_login') }}">Connexion</a>
+                {% endif %}
+            </li>
+            {% if is_granted('ROLE_USER') == false %}
+                <li>
+                    <a href="{{ path('app_security_inscription') }}">Inscription</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,6 @@
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+app_security_logout:
+    path: /deconnexion
