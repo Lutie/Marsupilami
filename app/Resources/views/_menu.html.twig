@@ -7,8 +7,8 @@
                 <a href="{{ path('app_main_index') }}">Marsupilami</a>
             </li>
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <li class="{{ route starts with 'app_main_viewone' ? 'active' }}">
-                    <a href="{{ path('app_main_viewone') }}">Afficher mon Marsupilami</a>
+                <li class="{{ route starts with 'app_main_viewself' ? 'active' }}">
+                    <a href="{{ path('app_main_viewself') }}">Afficher mon Marsupilami</a>
                 </li>
                 <li class="{{ route starts with 'app_main_edit' ? 'active' }}">
                     <a href="{{ path('app_main_edit') }}">Modifier mon Marsupilami</a>

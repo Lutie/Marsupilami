@@ -22,18 +22,9 @@ class MainController extends Controller
     /**
      * @Route("voir")
      */
-    public function viewOneAction()
+    public function viewSelfAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository(Marsupilami::class);
-
-        $marsupilami = $repository->findOneBy([
-            'name' => $this->getUser()->getName(),
-        ]);
-
-        return $this->render('marsupilami/view.html.twig', [
-            'marsupilami' => $marsupilami,
-        ]);
+        return $this->render('marsupilami/view.html.twig');
     }
 
     /**
